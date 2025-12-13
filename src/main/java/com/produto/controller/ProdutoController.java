@@ -26,7 +26,7 @@ public class ProdutoController implements Serializable {
     private Produto produto;
     private List<Produto> produtos;
     private static final String STANDARDERROR = "Um erro está impedindo a conclusão da operação. Por favor tente novamente mais tarde.";
-    private static final Logger logger = Logger.getLogger(ProdutoController.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ProdutoController.class.getName());
 
     @PostConstruct
     public void init() {
@@ -52,6 +52,7 @@ public class ProdutoController implements Serializable {
         } catch (BusinessException be){
             addMessageProduto(FacesMessage.SEVERITY_ERROR, "Error", be.getMessage());
         } catch (Exception e){
+            LOGGER.severe(e.getMessage());
             addMessageProduto(FacesMessage.SEVERITY_ERROR, "Error", STANDARDERROR);
         }
     }
@@ -64,6 +65,7 @@ public class ProdutoController implements Serializable {
         } catch (BusinessException be){
             addMessageProduto(FacesMessage.SEVERITY_ERROR, "Error", be.getMessage());
         } catch (Exception e){
+            LOGGER.severe(e.getMessage());
             addMessageProduto(FacesMessage.SEVERITY_ERROR, "Error", STANDARDERROR);
         }
     }
