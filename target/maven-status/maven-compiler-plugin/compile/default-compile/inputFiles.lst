@@ -3,4 +3,9 @@ C:\Users\Mathe\eclipse-workspace\cadastro-cliente\src\main\java\com\cliente\mode
 C:\Users\Mathe\eclipse-workspace\cadastro-cliente\src\main\java\com\cliente\repository\ClienteRepository.java
 C:\Users\Mathe\eclipse-workspace\cadastro-cliente\src\main\java\com\cliente\service\ClienteService.java
 C:\Users\Mathe\eclipse-workspace\cadastro-cliente\src\main\java\com\cliente\service\ClienteServiceImp.java
-C:\Users\Mathe\eclipse-workspace\cadastro-cliente\src\main\java\com\cliente\util\BusinessException.java
+C:\Users\Mathe\eclipse-workspace\cadastro-cliente\src\main\java\com\produto\controller\ProdutoController.java
+C:\Users\Mathe\eclipse-workspace\cadastro-cliente\src\main\java\com\produto\model\Produto.java
+C:\Users\Mathe\eclipse-workspace\cadastro-cliente\src\main\java\com\produto\repository\ProdutoRepository.java
+C:\Users\Mathe\eclipse-workspace\cadastro-cliente\src\main\java\com\produto\service\ProdutoService.java
+C:\Users\Mathe\eclipse-workspace\cadastro-cliente\src\main\java\com\produto\service\ProdutoServiceImp.java
+C:\Users\Mathe\eclipse-workspace\cadastro-cliente\src\main\java\com\util\BusinessException.java

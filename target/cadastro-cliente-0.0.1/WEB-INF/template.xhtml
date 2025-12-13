@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0, user-scalable=0"/>
+    </f:facet>
+    <title>Gerenciar Cadastros - JSF</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #F8F9FA;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .layout-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .layout-sidebar {
+            width: 250px;
+            background-color: #043e61;
+            color: #fff;
+            border-right: 1px solid #dee2e6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-logo {
+            padding: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .layout-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .ui-panelmenu .ui-panelmenu-header,
+        .ui-panelmenu .ui-panelmenu-content {
+            border: none !important;
+            background: none !important;
+            color: #fff !important;
+        }
+        .layout-sidebar .ui-panelmenu .ui-menuitem-text,
+        .layout-sidebar .ui-panelmenu .ui-icon,
+        .layout-sidebar .ui-panelmenu .ui-panelmenu-header a {
+            color: #fff !important;
+        }
+        .layout-sidebar .ui-panelmenu .ui-menuitem-link:hover .ui-menuitem-text,
+        .layout-sidebar .ui-panelmenu .ui-menuitem-link:hover .ui-icon {
+            color: #000000 !important;
+        }
+
+    </style>
+</h:head>
+
+<h:body>
+    <div class="layout-wrapper">
+        <div class="layout-sidebar">
+            <div class="sidebar-logo">
+                Estoque S
+            </div>
+
+            <h:form>
+                <p:panelMenu style="width:100%">
+                    <p:submenu label="Cadastros" expanded="true">
+                        <p:menuitem value="Home" outcome="index" icon="pi pi-home" disabled="true"/>
+                        <p:menuitem value="Clientes" outcome="index" icon="pi pi-users"/>
+                        <p:menuitem value="Produtos" icon="pi pi-box" disabled="true"/>
+                    </p:submenu>
+
+                    <p:submenu label="Configurações">
+                        <p:menuitem value="Sair" icon="pi pi-power-off"/>
+                    </p:submenu>
+                </p:panelMenu>
+            </h:form>
+        </div>
+
+        <div class="layout-content">
+            <ui:insert name="conteudo">
+                <h1>Conteúdo Padrão</h1>
+            </ui:insert>
+        </div>
+    </div>
+</h:body>
+
+</html>
