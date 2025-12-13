@@ -9,12 +9,12 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Stateless
-public class ProdutoServiceImp {
+public class ProdutoServiceImp implements ProdutoService {
 
     @Inject
     private ProdutoRepository produtoRepository;
 
-    public Produto create(Produto produto) throws BusinessException {
+    public Produto createProduto(Produto produto) throws BusinessException {
         if (produto.getNome() == null || produto.getQuantidade() <= 0) {
             throw new BusinessException("Verifique os campos de nome e a quantidade e tente novamente!");
         }

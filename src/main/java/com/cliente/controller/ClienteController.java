@@ -25,7 +25,7 @@ public class ClienteController implements Serializable {
 	private ClienteService clienteService;
 	private Cliente cliente;
 	private List<Cliente> clientes;
-	private final String standardError = "Ocorreu um erro que está impedindo a operação. Por favor tente novamente mais tarde.";
+	private final String STANDARDERROR = "Ocorreu um erro que está impedindo a operação. Por favor tente novamente mais tarde.";
 	private static final Logger LOGGER = Logger.getLogger(ClienteController.class.getName());
 	
 	@PostConstruct
@@ -58,7 +58,7 @@ public class ClienteController implements Serializable {
 			addMessage(FacesMessage.SEVERITY_ERROR, "Error", be.getMessage());
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
-			addMessage(FacesMessage.SEVERITY_ERROR, "Error", getStandardError());
+			addMessage(FacesMessage.SEVERITY_ERROR, "Error", getSTANDARDERROR());
 		}
 	}
 	
@@ -71,7 +71,7 @@ public class ClienteController implements Serializable {
 			addMessage(FacesMessage.SEVERITY_ERROR, "Error", be.getMessage());
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
-			addMessage(FacesMessage.SEVERITY_ERROR, "Error", getStandardError());
+			addMessage(FacesMessage.SEVERITY_ERROR, "Error", getSTANDARDERROR());
 		}
 	}
 
@@ -91,8 +91,8 @@ public class ClienteController implements Serializable {
 		this.clientes = clientes;
 	}
 
-	public String getStandardError() {
-		return standardError;
+	public String getSTANDARDERROR() {
+		return STANDARDERROR;
 	}
 	
 }
