@@ -21,7 +21,7 @@ public class ProdutoRepository {
         entityManager.remove(produto);
     }
 
-    public Produto find(Integer id) {
+    public Produto find(Long id) {
         return entityManager.find(Produto.class, id);
     }
 
@@ -31,5 +31,10 @@ public class ProdutoRepository {
 
     public List<Produto> findAll()  {
         return entityManager.createQuery("SELECT p FROM Produto p", Produto.class).getResultList();
+    }
+
+    public List<Produto> findByNome(String nome) {
+        return entityManager.createQuery("SELECT p FROM Produto p WHERE p.nome = :nome", Produto.class)
+                .setParameter("nome", nome).getResultList();
     }
 }

@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 import com.cliente.model.Cliente;
 import com.cliente.service.ClienteService;
-import com.cliente.util.BusinessException;
+import com.util.BusinessException;
 
 @Named
 @ViewScoped

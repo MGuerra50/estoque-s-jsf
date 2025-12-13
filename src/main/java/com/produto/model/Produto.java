@@ -15,7 +15,7 @@ public class Produto implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String nome;
-    private BigInteger quantidade;
+    private Integer quantidade;
 
 
     public Long getId() {
@@ -34,11 +34,11 @@ public class Produto implements Serializable {
         this.nome = nome;
     }
 
-    public BigInteger getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(BigInteger quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 

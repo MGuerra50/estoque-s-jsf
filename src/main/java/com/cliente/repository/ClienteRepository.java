@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.cliente.model.Cliente;
-import com.cliente.util.BusinessException;
+import com.util.BusinessException;
 
 @Stateless
 public class ClienteRepository {

@@ -1,4 +1,4 @@
-package com.cliente.util;
+package com.util;
 
 public class BusinessException extends Exception{
 

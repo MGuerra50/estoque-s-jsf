@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import com.cliente.model.Cliente;
 import com.cliente.repository.ClienteRepository;
-import com.cliente.util.BusinessException;
+import com.util.BusinessException;
 
 @Stateless
 public class ClienteServiceImp implements ClienteService{

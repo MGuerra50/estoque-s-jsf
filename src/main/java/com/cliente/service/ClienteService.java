@@ -3,7 +3,7 @@ package com.cliente.service;
 import java.util.List;
 
 import com.cliente.model.Cliente;
-import com.cliente.util.BusinessException;
+import com.util.BusinessException;
 
 public interface ClienteService {
 	
