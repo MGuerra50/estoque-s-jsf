@@ -56,6 +56,9 @@ public class ProdutoController implements Serializable {
             addMessageProduto(FacesMessage.SEVERITY_ERROR, "Error", STANDARDERROR);
         }
     }
+    public void updateProduto(Produto produto){
+        this.produto = produto;
+    }
 
     public void deleteProduto(Produto p) {
         try {

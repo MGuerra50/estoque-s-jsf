@@ -9,7 +9,7 @@
 
         <h:form id="formProduto">
             <p:growl id="msgs" showDetail="true"/>
-            <p:panel header="Cadastrar Produto" style="margin-bottom: 20px" toggleable="true">
+            <p:panel header="Cadastrar/Editar Produto" style="margin-bottom: 20px" toggleable="true">
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="nome" value="Nome: "/>
                     <p:inputText id="nome" value="#{produtoController.produto.nome}" required="true" label="Nome"/>
@@ -39,13 +39,28 @@
                         <h:outputText value="#{p.quantidade}"/>
                     </p:column>
                     <p:column headerText="AÇÕES" style="width: 100px; text-align: center">
-                        <p:commandButton icon="pi pi-trash" action="#{produtoController.deleteProduto(p)}"
-                                         update="@form" styleClass="ui-button-danger">
+                        <p:commandButton icon="pi pi-pencil"
+                                         action="#{produtoController.updateProduto(p)}"
+                                         update="@form"
+                                         process="@this"
+                                         styleClass="ui-button-warning"
+                                         style="margin-right: 7px"/>
+                        <p:commandButton icon="pi pi-trash"
+                                         action="#{produtoController.deleteProduto(p)}"
+                                         update="@form"
+                                         process="@this"
+                                         styleClass="ui-button-danger">
                             <p:confirm header="Confirmação" message="Tem certeza?" icon="pi pi-exclamation-triangle"/>
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>
             </p:panel>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"/>
+            </p:confirmDialog>
+
         </h:form>
 
     </ui:define>

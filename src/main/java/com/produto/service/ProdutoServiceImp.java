@@ -51,7 +51,7 @@ public class ProdutoServiceImp implements ProdutoService {
     public void deleteProduto(Produto produto) throws BusinessException {
         Produto p = produtoRepository.find(produto.getId());
         if (p != null) {
-            produtoRepository.delete(produto);
+            produtoRepository.delete(p);
         } else {
             throw new BusinessException("Produto já foi excluído!");
         }

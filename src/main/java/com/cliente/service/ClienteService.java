@@ -7,10 +7,10 @@ import com.util.BusinessException;
 
 public interface ClienteService {
 	
-	public Cliente createCliente (Cliente cliente) throws BusinessException;
-	public Cliente getCliente (Long id);
-	public List<Cliente> getAllClientes ();
-	public void removeCliente (Long id) throws BusinessException;
-	public void updateCliente (Cliente cliente) throws BusinessException;
-
+    Cliente createCliente (Cliente cliente) throws BusinessException;
+	Cliente getCliente (Long id);
+	List<Cliente> getAllClientes ();
+	void removeCliente (Long id) throws BusinessException;
+	void updateCliente (Cliente cliente) throws BusinessException;
+    List<Cliente> getSearch(Cliente cliente);
 }

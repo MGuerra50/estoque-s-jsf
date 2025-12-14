@@ -18,6 +18,7 @@ public class Cliente implements Serializable{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	private String nome;
+    private String cpf;
 	
 	public Long getId() {
 		return id;
@@ -31,7 +32,9 @@ public class Cliente implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	@Override
+    public String getCpf() {return cpf;}
+    public void setCpf(String cpf) {this.cpf = cpf;}
+    @Override
 	public int hashCode() {
 		return Objects.hash(id, nome);
 	}

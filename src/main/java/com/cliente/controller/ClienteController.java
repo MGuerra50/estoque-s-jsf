@@ -5,6 +5,7 @@ import java.util.logging.*;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.el.MethodExpression;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -24,6 +25,7 @@ public class ClienteController implements Serializable {
 	@Inject
 	private ClienteService clienteService;
 	private Cliente cliente;
+    private Cliente searchSliente;
 	private List<Cliente> clientes;
 	private final String STANDARDERROR = "Ocorreu um erro que está impedindo a operação. Por favor tente novamente mais tarde.";
 	private static final Logger LOGGER = Logger.getLogger(ClienteController.class.getName());
@@ -31,6 +33,7 @@ public class ClienteController implements Serializable {
 	@PostConstruct
 	public void init() {
 		this.cliente = new Cliente();
+        this.searchSliente = new Cliente();
 		this.clientes = clienteService.getAllClientes();
 	}
 	
@@ -61,6 +64,10 @@ public class ClienteController implements Serializable {
 			addMessage(FacesMessage.SEVERITY_ERROR, "Error", getSTANDARDERROR());
 		}
 	}
+
+    public void updateCliente  (Cliente cliente) {
+        this.cliente = cliente;
+    }
 	
 	public void delete (Cliente c) {
 		try {
@@ -74,6 +81,18 @@ public class ClienteController implements Serializable {
 			addMessage(FacesMessage.SEVERITY_ERROR, "Error", getSTANDARDERROR());
 		}
 	}
+
+    public void getSearch() {
+         try{
+             List<Cliente> search = clienteService.getSearch(searchSliente);
+             if (!search.isEmpty()) {
+                 this.clientes = search;
+             }
+         }catch (Exception e) {
+             LOGGER.severe(e.getMessage());
+             addMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());
+         }
+    }
 
 	public Cliente getCliente() {
 		return cliente;
@@ -94,5 +113,8 @@ public class ClienteController implements Serializable {
 	public String getSTANDARDERROR() {
 		return STANDARDERROR;
 	}
-	
+
+    public Cliente getSearchSliente() {return searchSliente;}
+
+    public void setSearchSliente(Cliente searchSliente) {this.searchSliente = searchSliente;}
 }

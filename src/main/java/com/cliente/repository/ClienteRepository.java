@@ -1,6 +1,7 @@
 package com.cliente.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -29,7 +30,7 @@ public class ClienteRepository {
 	
 	public void deleteById (Long id) throws BusinessException {
 		Cliente cliente = findById(id);
-		if(cliente == null) {
+		if(cliente != null) {
 			entityManager.remove(cliente);			
 		} else {
 			throw new BusinessException("Este cliente já foi excluído!");
@@ -39,5 +40,14 @@ public class ClienteRepository {
 	public void update(Cliente cliente) {
 		entityManager.merge(cliente);
 	}
-	
+
+    public List<Cliente> findByCpf(String cpf) {
+        return entityManager.createQuery("SELECT c FROM Cliente c WHERE c.cpf = :cpf", Cliente.class)
+                .setParameter("cpf", cpf).getResultList();
+    }
+
+    public List<Cliente> findByNome(String nome) {
+        return entityManager.createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome", Cliente.class)
+                .setParameter("nome", "%"+nome+"%").getResultList();
+    }
 }
