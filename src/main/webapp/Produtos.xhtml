@@ -12,9 +12,15 @@
             <p:panel header="Cadastrar Produto" style="margin-bottom: 20px">
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="nome" value="Nome: "/>
-                    <
+                    <p:inputText id="nome" value="#{produtoController.produto.nome}" required="true" label="Nome"/>
+                    <p:message for="nome" />
+                    <p:commandButton value="Salvar" action="#{produtoController.saveProduto}"
+                                     update="@form tabelaProdutos" icon="pi pi-check"/>
                 </h:panelGrid>
             </p:panel>
+            <p:dataTable id="tabelaProdutos" var="p" value="#{produtoController.produtos}">
+
+            </p:dataTable>
         </h:form>
 
     </ui:define>
