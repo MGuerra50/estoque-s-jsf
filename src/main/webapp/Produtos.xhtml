@@ -9,18 +9,43 @@
 
         <h:form id="formProduto">
             <p:growl id="msgs" showDetail="true"/>
-            <p:panel header="Cadastrar Produto" style="margin-bottom: 20px">
+            <p:panel header="Cadastrar Produto" style="margin-bottom: 20px" toggleable="true">
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="nome" value="Nome: "/>
                     <p:inputText id="nome" value="#{produtoController.produto.nome}" required="true" label="Nome"/>
-                    <p:message for="nome" />
+                    <p:message for="nome"/>
+
+                    <p:outputLabel for="quantidade" value="Quantidade: "/>
+                    <p:inputText id="quantidade" value="#{produtoController.produto.quantidade}" required="true"
+                                 label="Quantidade">
+                        <f:validateLongRange minimum="1"/>
+                    </p:inputText>
+                    <p:message for="quantidade"/>
+
                     <p:commandButton value="Salvar" action="#{produtoController.saveProduto}"
                                      update="@form tabelaProdutos" icon="pi pi-check"/>
                 </h:panelGrid>
             </p:panel>
-            <p:dataTable id="tabelaProdutos" var="p" value="#{produtoController.produtos}">
 
-            </p:dataTable>
+            <p:panel header="Listar Produtos" style="margin-bottom: 20px" toggleable="true">
+                <p:dataTable id="tabelaProdutos" var="p" value="#{produtoController.produtos}">
+                    <p:column headerText="ID" style="width: 50px">
+                        <h:outputText value="#{p.id}"/>
+                    </p:column>
+                    <p:column headerText="NOME">
+                        <h:outputText value="#{p.nome}"/>
+                    </p:column>
+                    <p:column headerText="QUANTIDADE">
+                        <h:outputText value="#{p.quantidade}"/>
+                    </p:column>
+                    <p:column headerText="AÇÕES" style="width: 100px; text-align: center">
+                        <p:commandButton icon="pi pi-trash" action="#{produtoController.deleteProduto(p)}"
+                                         update="@form" styleClass="ui-button-danger">
+                            <p:confirm header="Confirmação" message="Tem certeza?" icon="pi pi-exclamation-triangle"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
         </h:form>
 
     </ui:define>

@@ -57,10 +57,10 @@ public class ProdutoController implements Serializable {
         }
     }
 
-    public void deleteProduto() {
+    public void deleteProduto(Produto p) {
         try {
-            this.produtos.remove(this.produto);
-            produtoService.deleteProduto(this.produto);
+            this.produtos.remove(p);
+            produtoService.deleteProduto(p);
             addMessageProduto(FacesMessage.SEVERITY_INFO, "Success", "Produto deletado.");
         } catch (BusinessException be){
             addMessageProduto(FacesMessage.SEVERITY_ERROR, "Error", be.getMessage());

@@ -21,13 +21,17 @@ public class ProdutoServiceImp implements ProdutoService {
         if (!checkProduto(produto)) {
             throw new RuntimeException("Não foi possível cadastrar o produto, tente novamente mais tarde!");
         }
+        Produto novoProduto = new Produto();
+        novoProduto.setNome(produto.getNome());
+        novoProduto.setQuantidade(produto.getQuantidade());
+        produtoRepository.save(novoProduto);
 
-        return produto;
+        return novoProduto;
     }
 
     private boolean checkProduto(Produto produto) throws BusinessException {
         List<Produto> produtos = produtoRepository.findByNome(produto.getNome());
-        if(!produtos.isEmpty()){
+        if (!produtos.isEmpty()) {
             throw new BusinessException("Este produto já está cadastrado no sistema. Tente utilizar outro nome.");
         }
         return true;
@@ -37,14 +41,14 @@ public class ProdutoServiceImp implements ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public void updateProduto (Produto produto) throws BusinessException {
+    public void updateProduto(Produto produto) throws BusinessException {
         if (produto.getNome() == null || produto.getQuantidade() <= 0) {
             throw new BusinessException("Verifique os campos de nome e a quantidade e tente novamente!");
         }
         produtoRepository.update(produto);
     }
 
-    public void deleteProduto (Produto produto) throws BusinessException {
+    public void deleteProduto(Produto produto) throws BusinessException {
         Produto p = produtoRepository.find(produto.getId());
         if (p != null) {
             produtoRepository.delete(produto);
