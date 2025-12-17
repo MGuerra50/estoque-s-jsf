@@ -71,8 +71,8 @@ public class ClienteController implements Serializable {
 	
 	public void delete (Cliente c) {
 		try {
-			clienteService.removeCliente(c.getId());
-			this.clientes.remove(c);
+            this.clientes.remove(c);
+			clienteService.removeCliente(c);
 			addMessage(FacesMessage.SEVERITY_INFO, "Success", "Cliente excluído.");
 		} catch (BusinessException be) {
 			addMessage(FacesMessage.SEVERITY_ERROR, "Error", be.getMessage());
@@ -87,8 +87,14 @@ public class ClienteController implements Serializable {
              List<Cliente> search = clienteService.getSearch(searchSliente);
              if (!search.isEmpty()) {
                  this.clientes = search;
+             } else {
+                 addMessage(
+                         FacesMessage.SEVERITY_INFO,
+                         "Não foram encontrados resultados para a pesquisa feita.",
+                         ""
+                 );
              }
-         }catch (Exception e) {
+         } catch (Exception e) {
              LOGGER.severe(e.getMessage());
              addMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());
          }
