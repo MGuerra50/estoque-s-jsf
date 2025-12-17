@@ -25,7 +25,7 @@ public class ClienteServiceImp implements ClienteService {
         }
         Cliente novoCliente = new Cliente();
         novoCliente.setNome(cliente.getNome());
-        novoCliente.setCpf(cliente.getCpf());
+        novoCliente.setCpf(cliente.getCpf().replaceAll("\\D", ""));
         clienteRepository.save(novoCliente);
         return novoCliente;
     }
@@ -38,8 +38,8 @@ public class ClienteServiceImp implements ClienteService {
         return clienteRepository.findAll();
     }
 
-    public void removeCliente(Long id) throws BusinessException {
-        clienteRepository.deleteById(id);
+    public void removeCliente(Cliente cliente) throws BusinessException {
+        clienteRepository.deleteById(cliente);
     }
 
     public void updateCliente(Cliente cliente) throws BusinessException {
@@ -48,13 +48,14 @@ public class ClienteServiceImp implements ClienteService {
         } else if(cliente.getCpf() == null) {
             throw new BusinessException("CPF não pode estar vazio!");
         }
+        cliente.setCpf(cliente.getCpf().replaceAll("\\D", ""));
         clienteRepository.update(cliente);
     }
 
     public List<Cliente> getSearch(Cliente cliente) {
         try{
             if(!cliente.getCpf().isEmpty()) {
-                return clienteRepository.findByCpf(cliente.getCpf());
+                return clienteRepository.findByCpf(cliente.getCpf().replaceAll("\\D", ""));
             } else if (!cliente.getNome().isEmpty()) {
                 return clienteRepository.findByNome(cliente.getNome());
             }
