@@ -1,11 +1,12 @@
 com\produto\service\ProdutoServiceImp.class
-com\cliente\controller\ClienteController.class
 com\util\BusinessException.class
+com\cliente\util\CpfConverter.class
+com\produto\repository\ProdutoRepository.class
+com\produto\model\Produto.class
+com\cliente\controller\ClienteController.class
 com\cliente\service\ClienteService.class
 com\produto\service\ProdutoService.class
-com\produto\repository\ProdutoRepository.class
 com\cliente\model\Cliente.class
 com\produto\controller\ProdutoController.class
-com\produto\model\Produto.class
 com\cliente\repository\ClienteRepository.class
 com\cliente\service\ClienteServiceImp.class

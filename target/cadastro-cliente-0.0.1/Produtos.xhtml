@@ -23,31 +23,53 @@
                     <p:message for="quantidade"/>
 
                     <p:commandButton value="Salvar" action="#{produtoController.saveProduto}"
-                                     update="@form tabelaProdutos" icon="pi pi-check"/>
+                                     update="@form :formBusca:tabelaProdutos" icon="pi pi-check"/>
                 </h:panelGrid>
             </p:panel>
+        </h:form>
 
+        <h:form id="formBusca">
+            <p:panel header="Busca de Produto" style="margin-bottom:20px" toggleable="true">
+                <h:panelGrid columns="5" cellpadding="5">
+                    <p:outputLabel for="nomeBusca" value="Nome: "/>
+                    <p:inputText id="nomeBusca" value="#{produtoController.searchProduto.nome}"
+                                 label="Nome"/>
+                    <p:commandButton value="Buscar"
+                                     action="#{produtoController.getSearch()}"
+                                     process="@this nomeBusca"
+                                     update="tabelaProdutos :formProduto:msgs"
+                                     icon="pi pi-search"/>
+
+                </h:panelGrid>
+            </p:panel>
             <p:panel header="Listar Produtos" style="margin-bottom: 20px" toggleable="true">
-                <p:dataTable id="tabelaProdutos" var="p" value="#{produtoController.produtos}">
-                    <p:column headerText="ID" style="width: 50px">
+                <p:dataTable
+                        id="tabelaProdutos"
+                        var="p"
+                        value="#{produtoController.produtos}"
+                        paginator="true"
+                        rows="7"
+                        paginatorPosition="bottom"
+                >
+                    <p:column headerText="ID" style="width: 50px" sortBy="#{p.id}">
                         <h:outputText value="#{p.id}"/>
                     </p:column>
-                    <p:column headerText="NOME">
+                    <p:column headerText="NOME" sortBy="#{p.nome}">
                         <h:outputText value="#{p.nome}"/>
                     </p:column>
-                    <p:column headerText="QUANTIDADE">
+                    <p:column headerText="QUANTIDADE" sortBy="#{p.quantidade}">
                         <h:outputText value="#{p.quantidade}"/>
                     </p:column>
                     <p:column headerText="AÇÕES" style="width: 100px; text-align: center">
                         <p:commandButton icon="pi pi-pencil"
                                          action="#{produtoController.updateProduto(p)}"
-                                         update="@form"
+                                         update=":formProduto"
                                          process="@this"
                                          styleClass="ui-button-warning"
                                          style="margin-right: 7px"/>
                         <p:commandButton icon="pi pi-trash"
                                          action="#{produtoController.deleteProduto(p)}"
-                                         update="@form"
+                                         update="@form :formProduto:msgs"
                                          process="@this"
                                          styleClass="ui-button-danger">
                             <p:confirm header="Confirmação" message="Tem certeza?" icon="pi pi-exclamation-triangle"/>
