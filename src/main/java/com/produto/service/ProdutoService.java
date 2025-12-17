@@ -11,5 +11,6 @@ public interface ProdutoService {
     List<Produto> findAll();
     void updateProduto (Produto produto) throws BusinessException;
     void deleteProduto (Produto produto) throws BusinessException;
+    List<Produto> getSearch(Produto produto);
 
 }
