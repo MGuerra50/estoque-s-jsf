@@ -34,7 +34,7 @@ public class ProdutoRepository {
     }
 
     public List<Produto> findByNome(String nome) {
-        return entityManager.createQuery("SELECT p FROM Produto p WHERE p.nome = :nome", Produto.class)
-                .setParameter("nome", nome).getResultList();
+        return entityManager.createQuery("SELECT p FROM Produto p WHERE p.nome LIKE :nome", Produto.class)
+                .setParameter("nome", "%"+nome+"%").getResultList();
     }
 }
