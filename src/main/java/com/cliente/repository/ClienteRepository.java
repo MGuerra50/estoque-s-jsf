@@ -28,13 +28,13 @@ public class ClienteRepository {
 		entityManager.persist(cliente);
 	}
 	
-	public void deleteById (Long id) throws BusinessException {
-		Cliente cliente = findById(id);
-		if(cliente != null) {
-			entityManager.remove(cliente);			
+	public void deleteById (Cliente c) throws BusinessException {
+		Cliente findCliente = findById(c.getId());
+		if(findCliente == null) {
+            throw new BusinessException("Este cliente já foi excluído!");
 		} else {
-			throw new BusinessException("Este cliente já foi excluído!");
-		}
+            entityManager.remove(findCliente);
+        }
 	}
 	
 	public void update(Cliente cliente) {
