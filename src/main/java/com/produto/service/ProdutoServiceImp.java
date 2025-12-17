@@ -41,6 +41,18 @@ public class ProdutoServiceImp implements ProdutoService {
         return produtoRepository.findAll();
     }
 
+    public List<Produto> getSearch(Produto produto) {
+        try{
+            if (!produto.getNome().isEmpty()) {
+                return produtoRepository.findByNome(produto.getNome());
+            }
+            return findAll();
+
+        } catch (Exception e) {
+            throw new RuntimeException ("Nenhum cliente encontrado!");
+        }
+    }
+
     public void updateProduto(Produto produto) throws BusinessException {
         if (produto.getNome() == null || produto.getQuantidade() <= 0) {
             throw new BusinessException("Verifique os campos de nome e a quantidade e tente novamente!");
