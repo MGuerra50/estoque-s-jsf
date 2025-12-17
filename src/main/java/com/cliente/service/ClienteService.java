@@ -10,7 +10,7 @@ public interface ClienteService {
     Cliente createCliente (Cliente cliente) throws BusinessException;
 	Cliente getCliente (Long id);
 	List<Cliente> getAllClientes ();
-	void removeCliente (Long id) throws BusinessException;
+	void removeCliente (Cliente cliente) throws BusinessException;
 	void updateCliente (Cliente cliente) throws BusinessException;
     List<Cliente> getSearch(Cliente cliente);
 }
