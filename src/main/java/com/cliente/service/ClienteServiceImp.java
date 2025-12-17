@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import com.cliente.model.Cliente;
 import com.cliente.repository.ClienteRepository;
+import com.produto.model.Produto;
 import com.util.BusinessException;
 
 @Stateless
@@ -18,6 +19,9 @@ public class ClienteServiceImp implements ClienteService {
     private ClienteRepository clienteRepository;
 
     public Cliente createCliente(Cliente cliente) throws BusinessException {
+        if(!checkCpfDisponivel(cliente)){
+            throw new BusinessException("Esse cpf já está em uso no sistema.");
+        }
         if (cliente.getNome().isEmpty()) {
             throw new BusinessException("O campo nome não pode estar vazio!");
         } else if (cliente.getCpf().isEmpty()) {
@@ -50,6 +54,14 @@ public class ClienteServiceImp implements ClienteService {
         }
         cliente.setCpf(cliente.getCpf().replaceAll("\\D", ""));
         clienteRepository.update(cliente);
+    }
+
+    private boolean checkCpfDisponivel (Cliente cliente) throws BusinessException {
+        List<Cliente> clientes = clienteRepository.findByCpf(cliente.getCpf().replaceAll("\\D", ""));
+        if (!clientes.isEmpty()) {
+            throw new BusinessException("Este cpf já está cadastrado no sistema.");
+        }
+        return true;
     }
 
     public List<Cliente> getSearch(Cliente cliente) {

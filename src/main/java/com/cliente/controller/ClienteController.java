@@ -58,7 +58,7 @@ public class ClienteController implements Serializable {
 			this.cliente = new Cliente();
 			this.clientes = clienteService.getAllClientes();
 		} catch (BusinessException be) {
-			addMessage(FacesMessage.SEVERITY_ERROR, "Error", be.getMessage());
+			addMessage(FacesMessage.SEVERITY_ERROR, be.getMessage(), "");
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 			addMessage(FacesMessage.SEVERITY_ERROR, "Error", getSTANDARDERROR());
