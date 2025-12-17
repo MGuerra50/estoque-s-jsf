@@ -8,7 +8,7 @@
     <ui:define name="conteudo">
 
         <h:form id="formProduto">
-            <p:growl id="msgs" showDetail="true"/>
+            <p:growl id="msgs" showDetail="true" globalOnly="true"/>
             <p:panel header="Cadastrar/Editar Produto" style="margin-bottom: 20px" toggleable="true">
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="nome" value="Nome: "/>
@@ -16,8 +16,15 @@
                     <p:message for="nome"/>
 
                     <p:outputLabel for="quantidade" value="Quantidade: "/>
-                    <p:inputText id="quantidade" value="#{produtoController.produto.quantidade}" required="true"
-                                 label="Quantidade">
+                    <p:inputText
+                            id="quantidade"
+                            value="#{produtoController.produto.quantidade}"
+                            required="true"
+                            label="Quantidade"
+                            requiredMessage="Por favor, informe a quantidade."
+                            converterMessage="Digite apenas números inteiros para a quantidade."
+                            validatorMessage="A quantidade não pode ser menor que 1."
+                    >
                         <f:validateLongRange minimum="1"/>
                     </p:inputText>
                     <p:message for="quantidade"/>

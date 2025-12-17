@@ -5,7 +5,6 @@ import java.util.logging.*;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.el.MethodExpression;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -25,7 +24,7 @@ public class ClienteController implements Serializable {
 	@Inject
 	private ClienteService clienteService;
 	private Cliente cliente;
-    private Cliente searchSliente;
+    private Cliente searchCliente;
 	private List<Cliente> clientes;
 	private final String STANDARDERROR = "Ocorreu um erro que está impedindo a operação. Por favor tente novamente mais tarde.";
 	private static final Logger LOGGER = Logger.getLogger(ClienteController.class.getName());
@@ -33,7 +32,7 @@ public class ClienteController implements Serializable {
 	@PostConstruct
 	public void init() {
 		this.cliente = new Cliente();
-        this.searchSliente = new Cliente();
+        this.searchCliente = new Cliente();
 		this.clientes = clienteService.getAllClientes();
 	}
 	
@@ -84,7 +83,7 @@ public class ClienteController implements Serializable {
 
     public void getSearch() {
          try{
-             List<Cliente> search = clienteService.getSearch(searchSliente);
+             List<Cliente> search = clienteService.getSearch(searchCliente);
              if (!search.isEmpty()) {
                  this.clientes = search;
              } else {
@@ -120,7 +119,7 @@ public class ClienteController implements Serializable {
 		return STANDARDERROR;
 	}
 
-    public Cliente getSearchSliente() {return searchSliente;}
+    public Cliente getSearchCliente() {return searchCliente;}
 
-    public void setSearchSliente(Cliente searchSliente) {this.searchSliente = searchSliente;}
+    public void setSearchCliente(Cliente searchCliente) {this.searchCliente = searchCliente;}
 }

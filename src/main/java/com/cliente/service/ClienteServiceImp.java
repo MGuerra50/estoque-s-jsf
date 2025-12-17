@@ -74,7 +74,7 @@ public class ClienteServiceImp implements ClienteService {
             return getAllClientes();
 
         } catch (Exception e) {
-            throw new RuntimeException ("Nenhum cliente encontrado!");
+            return new ArrayList<>();
         }
     }
 }

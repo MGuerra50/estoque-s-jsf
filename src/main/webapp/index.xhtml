@@ -1,107 +1,73 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                template="/WEB-INF/template.xhtml">
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/template.xhtml"
+>
 
     <ui:define name="conteudo">
-        <h:form id="formCadastro">
-            <p:growl id="msgs" showDetail="true"/>
+        <div style="margin-bottom: 20px">
+            <h2>Bem-vindo ao Estoque S</h2>
+            <h4>Gerenciamos o estoque para que você foque no que te gera mais lucro!</h4>
+        </div>
 
-            <p:panel header="Cadastro/Edição de Clientes" style="margin-bottom:20px" toggleable="true">
-                <h:panelGrid columns="3" cellpadding="5">
+        <div class="p-grid" style="display: flex; gap:20px; flex-wrap: wrap">
+            <p:card style="width: 25rem; margin-bottom: 2em; border-left: 5px solid #2196F3;">
+                <f:facet name="header">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem">
+                        <i class="pi pi-user" style="font-size: 2rem; color: #2196F3"></i>
+                        <span style="font-size: 1.5rem; font-weight: bold">Clientes</span>
+                    </div>
+                </f:facet>
 
-                    <p:outputLabel for="nome" value="Nome: "/>
-                    <p:inputText id="nome" value="#{clienteController.cliente.nome}"
-                                 required="true" label="Nome"/>
-                    <p:message for="nome"/>
-                    <p:outputLabel for="cpf" value="CPF: "/>
-                    <p:inputMask id="cpf"
-                                 value="#{clienteController.cliente.cpf}"
-                                 required="true"
-                                 label="CPF"
-                                 mask="999.999.999-99"
-                                 validateMask="true"
-                                 converter="cpfConverter"
+                <div style="text-align: center">
+                    <h1 style="font-size: 4rem; margin: 0; color: #333;">#{homeController.totalClientes}</h1>
+                    <p>Cadastrados</p>
+                </div>
+                <f:facet name="footer">
+                    <p:button
+                            value="Gerenciar Clientes"
+                            outcome="/Clientes.xhtml"
+                            icon=" pi pi-arrow-right"
+                            styleClass="ui-button-outlined"
                     />
-                    <p:message for="cpf"/>
+                </f:facet>
+            </p:card>
 
-                    <p:commandButton value="Salvar" action="#{clienteController.save}"
-                                     update="@form :formBusca:tabelaClientes" icon="pi pi-check"/>
-
-                </h:panelGrid>
-            </p:panel>
-        </h:form>
-        <h:form id="formBusca">
-            <p:panel header="Busca de Cliente" style="margin-bottom:20px" toggleable="true">
-                <h:panelGrid columns="5" cellpadding="5">
-                    <p:outputLabel for="cpfBusca" value="CPF: "/>
-                    <p:inputMask
-                            id="cpfBusca"
-                            value="#{clienteController.searchSliente.cpf}"
-                            label="CPF"
-                            mask="999.999.999-99"
-                            validateMask="true"
+            <p:card style="width: 25rem; margin-bottom: 2em; border-left: 5px solid #4CAF50;">
+                <f:facet name="header">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem">
+                        <i class="pi pi-box" style="font-size: 2rem; color: #4CAF50"></i>
+                        <span style="font-size: 1.5rem; font-weight: bold">Produtos</span>
+                    </div>
+                </f:facet>
+                <div style="text-align: center">
+                    <h1 style="font-size: 4rem; margin: 0; color: #333">#{homeController.totalProdutos}</h1>
+                    <p>Em Estoque</p>
+                </div>
+                <f:facet name="footer">
+                    <p:button
+                            value="Gerenciar Produtos"
+                            outcome="/Produtos.xhtml"
+                            icon="pi pi-arrow-right"
+                            styleClass="ui-button-outlined ui-button-success"
                     />
-                    <p:outputLabel for="nomeBusca" value="Nome: "/>
-                    <p:inputText id="nomeBusca" value="#{clienteController.searchSliente.nome}"
-                                 label="Nome"/>
-                    <p:commandButton value="Buscar"
-                                     action="#{clienteController.getSearch()}"
-                                     process="@this cpfBusca nomeBusca"
-                                     update="tabelaClientes :formCadastro:msgs:"
-                                     icon="pi pi-search"/>
+                </f:facet>
+            </p:card>
+        </div>
 
-                </h:panelGrid>
-            </p:panel>
-
-            <p:panel header="Listagem de Clientes" style="margin-bottom:20px" toggleable="true">
-                <p:dataTable
-                        id="tabelaClientes"
-                        var="c"
-                        value="#{clienteController.clientes}"
-                        paginator="true"
-                        rows="7"
-                        paginatorPosition="bottom"
-                >
-
-                    <p:column headerText="ID" style="width:50px" sortBy="#{c.id}">
-                        <h:outputText value="#{c.id}"/>
-                    </p:column>
-                    <p:column headerText="Nome" sortBy="#{c.nome}">
-                        <h:outputText value="#{c.nome}"/>
-                    </p:column>
-                    <p:column headerText="CPF">
-                        <h:outputText value="#{c.cpf}" converter="cpfConverter"/>
-                    </p:column>
-
-                    <p:column headerText="Ações" style="width:100px; text-align:center">
-                        <p:commandButton icon="pi pi-pencil"
-                                         action="#{clienteController.updateCliente(c)}"
-                                         update=":formCadastro"
-                                         process="@this"
-                                         styleClass="ui-button-warning"
-                                         style="margin-right: 7px"/>
-                        <p:commandButton icon="pi pi-trash"
-                                         action="#{clienteController.delete(c)}"
-                                         update="@form :formCadastro:msgs"
-                                         process="@this"
-                                         styleClass="ui-button-danger">
-                            <p:confirm header="Confirmação" message="Tem certeza?"
-                                       icon="pi pi-exclamation-triangle"/>
-                        </p:commandButton>
-                    </p:column>
-                </p:dataTable>
-            </p:panel>
-
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
-                             responsive="true" width="350">
-                <p:commandButton value="Não" type="button"
-                                 styleClass="ui-confirmdialog-no ui-button-flat"/>
-                <p:commandButton value="Sim" type="button"
-                                 styleClass="ui-confirmdialog-yes"/>
-            </p:confirmDialog>
-        </h:form>
+        <p:panel header="Status do Sistema" style="margin-top: 20px">
+            <p>
+                <i class="pi pi-check-circle" style="color:green; margin-right:10px"></i>
+                Sistema operando normalmente.
+            </p>
+            <p>
+                <i class="pi pi-database" style="color:blue; margin-right:10px"></i>
+                Conexão com banco de dados estabelecida.
+            </p>
+        </p:panel>
     </ui:define>
+
 </ui:composition>

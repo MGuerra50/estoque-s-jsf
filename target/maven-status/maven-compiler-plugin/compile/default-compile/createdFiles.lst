@@ -1,5 +1,6 @@
 com\produto\service\ProdutoServiceImp.class
 com\util\BusinessException.class
+com\home\controller\HomeController.class
 com\cliente\util\CpfConverter.class
 com\produto\repository\ProdutoRepository.class
 com\produto\model\Produto.class

@@ -53,7 +53,7 @@ public class ProdutoController implements Serializable {
             this.produto = new Produto();
             this.produtos = produtoService.findAll();
         } catch (BusinessException be) {
-            addMessageProduto(FacesMessage.SEVERITY_ERROR, "Error", be.getMessage());
+            addMessageProduto(FacesMessage.SEVERITY_ERROR, be.getMessage(), "");
         } catch (Exception e) {
             LOGGER.severe(e.getMessage());
             addMessageProduto(FacesMessage.SEVERITY_ERROR, "Error", STANDARDERROR);

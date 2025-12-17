@@ -6,6 +6,7 @@ import com.util.BusinessException;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -47,9 +48,8 @@ public class ProdutoServiceImp implements ProdutoService {
                 return produtoRepository.findByNome(produto.getNome());
             }
             return findAll();
-
         } catch (Exception e) {
-            throw new RuntimeException ("Nenhum cliente encontrado!");
+            return new ArrayList<>();
         }
     }
 
